@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float velocidad;
     public GameObject bullet;
+	public GameObject bulletDoble;
     private Rigidbody2D rb2d;
 
 	public float nextFire;
@@ -55,29 +56,50 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameController.gameOver)
         {
-			if (Input.GetButton("Fire1") && Time.time > nextFire)
+			Quaternion rotacionBala = Quaternion.identity;
+
+			if (Input.GetButton("Fire1") && Time.time > nextFire) // Abajo
             {
+				rotacionBala = Quaternion.Euler(new Vector3(0, 0, -90));
 				SetDisparoYNextFire (4);
             }
 
-			else if (Input.GetButton("Fire2") && Time.time > nextFire)
+			else if (Input.GetButton("Fire2") && Time.time > nextFire) // Derecha
 			{
 				SetDisparoYNextFire (1);
 			}
 
-			else if (Input.GetButton("Fire3") && Time.time > nextFire)
+			else if (Input.GetButton("Fire3") && Time.time > nextFire) // Izquierda
 			{
 				SetDisparoYNextFire (2);
 			}
 
-			else if (Input.GetButton("Jump") && Time.time > nextFire)
+			else if (Input.GetButton("Jump") && Time.time > nextFire) // Arriba
 			{
+				rotacionBala = Quaternion.Euler(new Vector3(0, 0, 90));
 				SetDisparoYNextFire (3);
 			}
 
 			if (disparoActual > 0) 
 			{
-				Instantiate (bullet, transform.position, transform.rotation);
+				switch (BaseConst.cantidadBalasActual)
+				{
+					case 1:
+						Instantiate (bullet, transform.position, Quaternion.identity);
+
+						break;
+
+					case 2:
+						Instantiate (bulletDoble, transform.position,  rotacionBala);
+
+						break;
+
+					default:
+						Debug.Log ("NO HAY BALAS!");
+
+						break;
+				}
+
 			}
         }
     }

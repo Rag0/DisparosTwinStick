@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class BulletController : MonoBehaviour
 {
-    public float velocidadBala;
     private float disparoActual;
 
 	public int puntajeEnemigo;
 
 	public GameObject itemVelocidadDisparo;
+	public GameObject itemVelocidadBala;
+	public GameObject itemCantidadBalas;
 
     // Use this for initialization
     void Start ()
@@ -29,22 +30,22 @@ public class BulletController : MonoBehaviour
 
             if (disparoActual == 1)
             {
-                movX = movX + velocidadBala;
+				movX = movX + BaseConst.velocidadBalaActual;
             }
 
             else if (disparoActual == 2)
             {
-                movX = movX - velocidadBala;
+				movX = movX - BaseConst.velocidadBalaActual;
             }
 
             else if (disparoActual == 3)
             {
-                movY = movY + velocidadBala;
+				movY = movY + BaseConst.velocidadBalaActual;
             }
 
             else if (disparoActual == 4)
             {
-                movY = movY - velocidadBala;
+				movY = movY - BaseConst.velocidadBalaActual;
             }
 
             transform.position = new Vector3(movX, movY, transform.position.z);
@@ -69,18 +70,50 @@ public class BulletController : MonoBehaviour
         }
     }
 
-	void SpawnearDrop(string tipoEnemigo, Vector2 posActualEnenmigo)
+	void SpawnearDrop(string tipoEnemigo, Vector2 posActualEnemigo)
 	{
 		switch (tipoEnemigo)
 		{
 			case "Enemigo1":
-				Instantiate(itemVelocidadDisparo, posActualEnenmigo, Quaternion.identity);
-				
+				calcularProbabilidadDrop (posActualEnemigo);
+
 				break;
 
 			default:
 
 				break;
 		}
+	}
+
+	void calcularProbabilidadDrop (Vector2 posActualEnemigo)
+	{
+		float probabilidad = 0.5f;
+		float numeroRandom = Random.Range(0f, 1f);
+
+		if (numeroRandom <= probabilidad)
+		{
+			if (numeroRandom <= 0.25f)
+			{
+				Instantiate(itemVelocidadBala, posActualEnemigo, Quaternion.identity);
+			}
+
+			else
+			{
+				Instantiate(itemVelocidadDisparo, posActualEnemigo, Quaternion.identity);
+			}
+		}
+
+		else
+		{
+			if (numeroRandom >= 0.75f)
+			{
+				Instantiate(itemCantidadBalas, posActualEnemigo, Quaternion.identity);
+			}
+
+			else
+			{
+				Debug.Log ("No hay drop!");
+			}
+		}			
 	}
 }

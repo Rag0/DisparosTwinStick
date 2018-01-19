@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
 
 	// Textos estadisticas
 	public Text speedShot;
+	public Text velocidadBalaTxt;
 	public float fireRate;
 
     //Spawn this object
@@ -55,6 +56,7 @@ public class GameController : MonoBehaviour
         {
 			SetScore ();
 			SetSpeedShot ();
+			SetVelocidadBala ();
 
             //Counts up
             time += Time.deltaTime;
@@ -79,14 +81,19 @@ public class GameController : MonoBehaviour
 		}
     }
 
-	void SetScore()
+	void SetScore ()
 	{
 		scoreText.text = "Score: " + score;
 	}
 
-	void SetSpeedShot()
+	void SetSpeedShot ()
 	{
-		speedShot.text = "Speed Shot: " + PlayerController.fireRate;
+		speedShot.text = "Fire rate: " + PlayerController.fireRate;
+	}
+
+	void SetVelocidadBala ()
+	{
+		velocidadBalaTxt.text = "Shoot Speed: " + BaseConst.velocidadBalaActual;
 	}
 
     //Spawns the object and resets the time

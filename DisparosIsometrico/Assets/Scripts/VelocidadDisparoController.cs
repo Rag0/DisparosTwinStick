@@ -22,7 +22,7 @@ public class VelocidadDisparoController : MonoBehaviour
 	{
 		if (other.gameObject.tag == "Player")
 		{
-			if (PlayerController.fireRate > 0.1f)
+			if (PlayerController.fireRate > 0.2f)
 			{
 				PlayerController.fireRate -= bonusVelocidadDisparo;
 			}

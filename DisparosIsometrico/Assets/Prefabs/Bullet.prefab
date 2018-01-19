@@ -89,9 +89,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0161bb1a68940334fa76e68de8b0afa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadBala: 0.04
   puntajeEnemigo: 10
   itemVelocidadDisparo: {fileID: 1660879304966912, guid: 3c29862ffb422a846bf5b7f5acfa49e5,
+    type: 2}
+  itemVelocidadBala: {fileID: 1876216650170660, guid: eb866a440f066164fb65c7c896d0ee93,
+    type: 2}
+  itemCantidadBalas: {fileID: 1725169090825898, guid: 7bed5c7062768cb44b1b872e729fe22a,
     type: 2}
 --- !u!212 &212220614005276226
 SpriteRenderer:
