@@ -52,7 +52,7 @@ public class BulletEnemigo1Controller : MonoBehaviour
             GameController.gameOver = true;
         }
 
-		if (other.gameObject.tag != "Enemigo1" && other.gameObject.tag != "BalaPlayer" && other.gameObject.tag != "ItemDrop")
+		if (other.gameObject.tag != "Enemigo1" && other.gameObject.tag != "Boss1" && other.gameObject.tag != "BalaPlayer" && other.gameObject.tag != "ItemDrop" && other.gameObject.tag != "BalaEnemigo")
         {
             Destroy(gameObject);
         }

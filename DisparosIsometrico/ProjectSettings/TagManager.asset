@@ -11,6 +11,7 @@ TagManager:
   - BalaEnemigo
   - MuroChoque
   - ItemDrop
+  - Boss1
   layers:
   - Default
   - TransparentFX
@@ -51,9 +52,18 @@ TagManager:
   - name: Background
     uniqueID: 314586957
     locked: 0
+  - name: BackMidground
+    uniqueID: 3452434241
+    locked: 0
   - name: Midground
     uniqueID: 3656912505
     locked: 0
+  - name: ForeMidground
+    uniqueID: 1915937295
+    locked: 0
   - name: Foreground
     uniqueID: 3120724455
+    locked: 0
+  - name: UI
+    uniqueID: 1640561967
     locked: 0

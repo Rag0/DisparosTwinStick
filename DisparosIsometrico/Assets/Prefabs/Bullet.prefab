@@ -96,6 +96,8 @@ MonoBehaviour:
     type: 2}
   itemCantidadBalas: {fileID: 1725169090825898, guid: 7bed5c7062768cb44b1b872e729fe22a,
     type: 2}
+  itemBulletRebote: {fileID: 1979598673789916, guid: c250075b8fddea349a09f02fc7743d47,
+    type: 2}
 --- !u!212 &212220614005276226
 SpriteRenderer:
   m_ObjectHideFlags: 1

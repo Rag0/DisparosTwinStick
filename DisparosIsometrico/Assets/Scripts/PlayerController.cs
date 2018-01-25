@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Enemigo1")
+		if (coll.gameObject.tag == "Enemigo1" || coll.gameObject.tag == "Boss1")
         {
             Destroy(gameObject);
             GameController.gameOver = true;

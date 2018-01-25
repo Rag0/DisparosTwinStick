@@ -18,6 +18,9 @@ public class GameController : MonoBehaviour
 
     //Spawn this object
     public GameObject enemigo1;
+	public GameObject boss1;
+	public GameObject muroBarrera;
+
     public static float movHorizontalEnemigo;
     public static float movVerticalEnemigo;
 
@@ -34,6 +37,10 @@ public class GameController : MonoBehaviour
 
     public static bool gameOver;
 
+	private float nextTimeScore;
+
+	private bool bossActivado;
+
     void Start()
     {
         gameOver = false;
@@ -41,32 +48,55 @@ public class GameController : MonoBehaviour
         SetRandomTime();
         time = minTime;
 
+		// paso la referencia del player a los enemigos prefab
         enemigo1.GetComponent<Enemigo1Controller>().player = player1;
+		boss1.GetComponent<Boss1Controller>().player = player1;
+		boss1.GetComponent<Boss1Controller>().muroBarrera = muroBarrera;
 
 		score = 0;
 		fireRate = 0.5f;
 		PlayerController.fireRate = fireRate;
 		SetScore ();
 		SetSpeedShot ();
+
+		bossActivado = true;
     }
 
     void FixedUpdate()
     {
         if (!gameOver)
         {
+			restarScore ();
 			SetScore ();
 			SetSpeedShot ();
 			SetVelocidadBala ();
+
+			if (score >= BaseConst.scoreNecesarioActual)
+			{
+				BaseConst.activarBoss = true;
+			}
 
             //Counts up
             time += Time.deltaTime;
 
             //Check if its the right time to spawn the object
-            if (time >= spawnTime)
-            {
-                SpawnObject();
-                SetRandomTime();
-            }
+			if (BaseConst.activarBoss)
+			{
+				if (bossActivado == true)
+				{
+					Instantiate(boss1, new Vector3 (0, 6f, 0), Quaternion.identity);
+					bossActivado = false;
+				}
+			}
+
+			else
+			{
+	            if (time >= spawnTime)
+	            {
+	                SpawnObject();
+	                SetRandomTime();
+	            }
+			}
         }
 			
 		else 
@@ -157,4 +187,30 @@ public class GameController : MonoBehaviour
 
         return new Vector3(posX, posY, 0f);
     }
+
+	void actualizarScore(int tipo, int puntaje)
+	{
+		if (tipo == 1)
+		{
+			score += puntaje;
+		}
+
+		else if (tipo == 2)
+		{
+			score -= puntaje;
+		}
+	}
+
+	void restarScore ()
+	{
+		if (Time.time > nextTimeScore)
+		{
+			nextTimeScore = Time.time + 1f;
+
+			if (score > 0) 
+			{
+				score = score - 1;
+			}
+		}
+	}
 }

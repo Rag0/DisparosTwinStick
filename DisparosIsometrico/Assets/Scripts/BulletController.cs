@@ -5,19 +5,24 @@ using UnityEngine.UI;
 
 public class BulletController : MonoBehaviour
 {
-    private float disparoActual;
+	private float disparoActual;
 
 	public int puntajeEnemigo;
+	private int contadorRebotes;
+
+	public static int danhoBulletPlayer = 5;
 
 	public GameObject itemVelocidadDisparo;
 	public GameObject itemVelocidadBala;
 	public GameObject itemCantidadBalas;
+	public GameObject itemBulletRebote;
 
     // Use this for initialization
     void Start ()
     {
         disparoActual = PlayerController.disparoActual;
 		PlayerController.disparoActual = 0;
+		contadorRebotes = 0;
     }
 	
 	// Update is called once per frame
@@ -54,9 +59,38 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-		if (other.gameObject.tag != "Player" && other.gameObject.tag != "BalaEnemigo" && other.gameObject.tag != "ItemDrop")
+		if (other.gameObject.tag != "Player" && other.gameObject.tag != "BalaEnemigo" && other.gameObject.tag != "ItemDrop" && other.gameObject.tag != "BalaPlayer")
         {
-            Destroy(gameObject);
+			// calcular rebote
+			if (BaseConst.tipoBulletActual == 2 && contadorRebotes < 1 && other.gameObject.tag == "Muro")
+			{
+				if (disparoActual == 1)
+				{
+					disparoActual = 2;
+				} 
+
+				else if (disparoActual == 2)
+				{
+					disparoActual = 1;
+				}
+
+				else if (disparoActual == 3)
+				{
+					disparoActual = 4;
+				}
+
+				else if (disparoActual == 4)
+				{
+					disparoActual = 3;
+				}
+
+				contadorRebotes++;
+			}
+
+			else 
+			{
+				Destroy (gameObject);
+			}
         }
 
         if (other.gameObject.tag == "Enemigo1")
@@ -66,11 +100,17 @@ public class BulletController : MonoBehaviour
             Destroy(other.gameObject);
 			SpawnearDrop("Enemigo1", posActualEnemigo);
 
-			GameController.score = GameController.score + puntajeEnemigo;
+			GameController.score = GameController.score + Enemigo1Controller.puntaje;
         }
+
+		if (other.gameObject.tag == "Boss1")
+		{
+			// Asignar daño
+			Boss1Controller.estaDanado = true;
+		}
     }
 
-	void SpawnearDrop(string tipoEnemigo, Vector2 posActualEnemigo)
+	void SpawnearDrop (string tipoEnemigo, Vector2 posActualEnemigo)
 	{
 		switch (tipoEnemigo)
 		{
@@ -112,8 +152,36 @@ public class BulletController : MonoBehaviour
 
 			else
 			{
-				Debug.Log ("No hay drop!");
+				Instantiate(itemBulletRebote, posActualEnemigo, Quaternion.identity);
 			}
 		}			
 	}
+
+	/*void calcularDisparoRebote(string tagObjeto, GameObject gameObject)
+	{
+		if (contadorRebotes < 1 && tagObjeto == "Muro") 
+		{
+			if (disparoActual == 1) 
+			{
+				disparoActual = 2;
+			}
+
+			else if (disparoActual == 2) 
+			{
+				disparoActual = 1;
+			}
+
+			else if (disparoActual == 3) 
+			{
+				disparoActual = 4;
+			}
+
+			else if (disparoActual == 4) 
+			{
+				disparoActual = 3;
+			}
+
+			contadorRebotes++;
+		}
+	}*/
 }

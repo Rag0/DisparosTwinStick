@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4985985510331670}
   - component: {fileID: 212481626038199306}
   - component: {fileID: 50131877494024780}
-  - component: {fileID: 58565796470902422}
   - component: {fileID: 114264861200773734}
-  - component: {fileID: 58189240038039868}
+  - component: {fileID: 61116403521819978}
   m_Layer: 0
   m_Name: BulletDoble
   m_TagString: BalaPlayer
@@ -64,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58189240038039868
-CircleCollider2D:
+--- !u!61 &61116403521819978
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,24 +75,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12}
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.08, y: 0.32}
+    newSize: {x: 0.08, y: 0.08}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.04
---- !u!58 &58565796470902422
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1610722325944426}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.12}
-  serializedVersion: 2
-  m_Radius: 0.04
+  m_Size: {x: 0.06, y: 0.3}
+  m_EdgeRadius: 0
 --- !u!114 &114264861200773734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,6 +105,8 @@ MonoBehaviour:
   itemVelocidadBala: {fileID: 1876216650170660, guid: eb866a440f066164fb65c7c896d0ee93,
     type: 2}
   itemCantidadBalas: {fileID: 1725169090825898, guid: 7bed5c7062768cb44b1b872e729fe22a,
+    type: 2}
+  itemBulletRebote: {fileID: 1979598673789916, guid: c250075b8fddea349a09f02fc7743d47,
     type: 2}
 --- !u!212 &212481626038199306
 SpriteRenderer:

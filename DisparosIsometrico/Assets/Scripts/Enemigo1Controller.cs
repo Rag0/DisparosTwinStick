@@ -7,7 +7,6 @@ public class Enemigo1Controller : MonoBehaviour
     public GameObject player;
     public float velocidad;
     public GameObject bulletEnemigo1;
-    public GameObject murosMedio;
 
     private Rigidbody2D rb2d;
     private float movHorizontal;
@@ -21,6 +20,8 @@ public class Enemigo1Controller : MonoBehaviour
     public static float movimientoActual;
 
     private bool movimientoLibre;
+
+	public static int puntaje = 10;
 
     // Use this for initialization
     void Start ()

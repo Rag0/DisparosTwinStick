@@ -103,7 +103,6 @@ MonoBehaviour:
   velocidad: 20
   bulletEnemigo1: {fileID: 1902692699650012, guid: f862b5a52c341c04fa75860903362711,
     type: 2}
-  murosMedio: {fileID: 0}
   fireDelta: 1
   siguienteDisparo: 1
 --- !u!212 &212943801363377370
@@ -138,7 +137,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -638054791
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: b86a24e6917c4a6459df59e972feb27b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
